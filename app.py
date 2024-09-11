@@ -3,6 +3,7 @@ from flask_migrate import Migrate
 from flask_restx import Api
 
 from api.auth_routes import auth_namespace
+from api.model_routes import models_namespace
 from config.app_config import Config
 from config.db_config import db
 
@@ -28,6 +29,7 @@ def create_app():
 
     # Register Blueprints
     api.add_namespace(auth_namespace, path="/auth")
+    api.add_namespace(models_namespace, path="/models")
 
     return app
 

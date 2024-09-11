@@ -1,7 +1,7 @@
 import jwt
 
 from datetime import datetime, timedelta
-from flask import request, jsonify
+from flask import request, jsonify, make_response
 from functools import wraps
 
 from config.app_config import Config
@@ -44,16 +44,16 @@ def token_required(f):
             token = request.headers['Authorization'].split(" ")[1]
 
         if not token:
-            return jsonify({'message': 'Token is missing!'}), 401
+            return make_response(jsonify({'message': 'Token is missing!'}), 401)
 
         payload = decode_jwt_token(token)
         if not payload:
-            return jsonify({'message': 'Token is invalid or expired!'}), 401
+            return make_response(jsonify({'message': 'Token is invalid or expired!'}), 401)
 
         user_id = payload.get('user_id')
         user = User.query.get(user_id)
         if not user:
-            return jsonify({'message': 'User not found!'}), 404
+            return make_response(jsonify({'message': 'User not found!'}), 404)
 
         return f(user, *args, **kwargs)
 
