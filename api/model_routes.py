@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, make_response
+from flask import request, jsonify, make_response
 from flask_restx import Namespace, Resource, fields
 from marshmallow import ValidationError
 
@@ -32,12 +32,12 @@ class ListAllModelsResource(Resource):
         """
         List all prediction models in the application, regardless of user.
         """
-        # return make_response(jsonify({'ya': 'hoo'}), 200)
         try:
             models = PredictionModel.query.all()
         except Exception as e:
             return handle_error('Error retrieving models: ' + str(e), 500)
 
+        log_api_call(self.id, 'all', request.json)
         return make_response(jsonify([
             {
                 'id': model.id,

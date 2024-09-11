@@ -15,6 +15,7 @@ def create_jwt_token(user_id):
     expiration = datetime.utcnow() + timedelta(hours=1)  # Token expires in 1 hour
     payload = {
         'user_id': user_id,
+        'iat': datetime.utcnow(),
         'exp': expiration
     }
     return jwt.encode(payload, Config.SECRET_KEY, algorithm='HS256')

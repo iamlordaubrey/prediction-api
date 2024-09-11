@@ -52,7 +52,6 @@ class RegisterUser(Resource):
             return handle_error('Error registering user: ' + str(e), 500)
 
         log_api_call(username, 'register', request.json)
-
         return make_response(jsonify({'message': 'User registered successfully'}), 201)
 
 

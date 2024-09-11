@@ -8,9 +8,13 @@ from config.app_config import Config
 from config.db_config import db
 
 
-def create_app():
+def create_app(test_env=False):
     app = Flask(__name__)
     app.config.from_object(Config)
+
+    # Override with the environment-specific config
+    if test_env:
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 
     # Initialize SQLAlchemy
     db.init_app(app)
