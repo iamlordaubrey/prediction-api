@@ -1,5 +1,6 @@
 # Variables
 FLASK = flask
+port = 5001
 
 # Targets
 .PHONY: help init db migrate upgrade seed run
@@ -42,7 +43,7 @@ seed:
 
 run:
 	source $(VENV)/bin/activate \
-	&& FLASK_APP=app.py FLASK_ENV=development $(FLASK) run
+	&& FLASK_APP=app.py FLASK_ENV=development $(FLASK) run --port $(port)
 
 setup:
 	test -r $(VENV) || MAKE $(VENV)

@@ -20,14 +20,14 @@ predictions
 - API documentation is available via **Swagger**
 
 ## Documentation:
-- [API Documentation](http://localhost:5001)
+- [API Documentation](http://localhost:5001/api): http://localhost:5001/api
 
 ## Running the Project
 ### Setup
 To set up the project, run:
 ```commandline
 make setup
-make run
+make run port=5001
 ```
 
 ### To run tests
