@@ -29,7 +29,7 @@ def test_add_model(authenticated_client):
     assert response.json['message'] == 'Model added successfully'
 
 
-def test_get_model(authenticated_client):
+def test_get_user_models(authenticated_client):
     """
     Test retrieving all models for a user.
     """

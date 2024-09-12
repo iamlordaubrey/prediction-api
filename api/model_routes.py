@@ -37,7 +37,6 @@ class ListAllModelsResource(Resource):
         except Exception as e:
             return handle_error('Error retrieving models: ' + str(e), 500)
 
-        log_api_call(self.id, 'all', request.json)
         return make_response(jsonify([
             {
                 'id': model.id,
